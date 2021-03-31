@@ -6,14 +6,14 @@ use App\Domain\Shared\Entity\Airport;
 class AirportCollection
 {
     /** @var Airport[] */
-    private $airports;
+    private array $airports;
 
     private function __construct(array $airports)
     {
         $this->airports = $airports;
     }
 
-    public static function create(): self
+    public static function createEmpty(): self
     {
         return new self([]);
     }
@@ -29,6 +29,11 @@ class AirportCollection
         $this->airports[] = $airport;
 
         return $this;
+    }
+
+    public function isEmpty(): bool
+    {
+        return empty($this->airports);
     }
 
     public function getAll(): array

@@ -27,6 +27,6 @@ class PossibleRoutesCollection
 
     public function get(int $airportId): ?AirportCollection
     {
-        return $this->airports[$airportId] ?? null;
+        return $this->possibleRoutes[$airportId] ?? null;
     }
 }

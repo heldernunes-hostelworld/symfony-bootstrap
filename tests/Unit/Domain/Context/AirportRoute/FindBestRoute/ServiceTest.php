@@ -84,12 +84,12 @@ class ServiceTest extends TestCase
                 PossibleRoutesCollection::create()
                     ->addPossibleRoutes(
                         $originAirport,
-                        AirportCollection::create()
+                        AirportCollection::createEmpty()
                             ->addAirport($intermediateAirport)
                     )
                     ->addPossibleRoutes(
                         $intermediateAirport,
-                        AirportCollection::create()
+                        AirportCollection::createEmpty()
                             ->addAirport($destinationAirport)
                     )
             );
