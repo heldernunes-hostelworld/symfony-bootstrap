@@ -1,7 +1,7 @@
 controllers:
-    resource: ../../src/Controller/
+    resource: ../../src/Entrypoint/Http/Rest/Controller/
     type: annotation
 
 kernel:
-    resource: ../../src/Kernel.php
+    resource: ../../src/Entrypoint/Http/Kernel.php
     type: annotation

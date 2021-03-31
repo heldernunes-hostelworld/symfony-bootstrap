@@ -11,3 +11,10 @@
 
 .idea
 docker/database/data
+
+###> phpunit/phpunit ###
+*/phpunit.xml
+*.phpunit.result.cache
+tests/reports/*
+###< phpunit/phpunit ###
+

@@ -1,10 +1,12 @@
 <?php
 
-use App\Kernel;
+use App\Entrypoint\Http\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
-require dirname(__DIR__).'/config/bootstrap.php';
+define('PROJECT_ROOT', __DIR__ . '/..');
+
+require PROJECT_ROOT . '/config/bootstrap.php';
 
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);
