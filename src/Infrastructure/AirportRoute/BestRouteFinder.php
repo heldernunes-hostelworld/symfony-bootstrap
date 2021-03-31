@@ -5,7 +5,6 @@ use App\Domain\Context\AirportRoute\FindBestRoute\Collection\AirportCollection;
 use App\Domain\Context\AirportRoute\FindBestRoute\Collection\PossibleRoutesCollection;
 use App\Domain\Context\AirportRoute\FindBestRoute\ShortestPathFinder;
 use App\Domain\Shared\Entity\Airport;
-use App\Infrastructure\AirportRoute\Exception\OriginAirportHasNoAdjacentAirportsException;
 
 class BestRouteFinder implements ShortestPathFinder
 {

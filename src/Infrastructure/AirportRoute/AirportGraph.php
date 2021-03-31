@@ -4,7 +4,6 @@ namespace App\Infrastructure\AirportRoute;
 use App\Domain\Context\AirportRoute\FindBestRoute\Collection\AirportCollection;
 use App\Domain\Context\AirportRoute\FindBestRoute\Collection\PossibleRoutesCollection;
 use App\Domain\Shared\Entity\Airport;
-use App\Infrastructure\AirportRoute\Exception\OriginAirportHasNoAdjacentAirportsException;
 use SplQueue;
 
 class AirportGraph
