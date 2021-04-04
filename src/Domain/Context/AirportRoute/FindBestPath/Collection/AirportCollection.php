@@ -23,7 +23,6 @@ class AirportCollection
         return new self($airports);
     }
 
-
     public function addAirport(Airport $airport): self
     {
         $this->airports[] = $airport;
