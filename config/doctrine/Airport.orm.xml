@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Domain\Shared\Entity\Airport" table="Airports">
+    <indexes>
+      <index name="countryId" columns="countryId"/>
+      <index name="cityId" columns="cityId"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="airportName" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="createdAt" type="datetime" column="added" nullable="false">
+      <options>
+        <option name="default">current_timestamp()</option>
+      </options>
+    </field>
+    <many-to-one field="country" target-entity="Country" fetch="LAZY">
+      <join-columns>
+        <join-column name="countryId" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="city" target-entity="City" fetch="LAZY">
+      <join-columns>
+        <join-column name="cityId" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
