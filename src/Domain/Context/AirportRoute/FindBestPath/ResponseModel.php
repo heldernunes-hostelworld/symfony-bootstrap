@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
-namespace App\Domain\Context\AirportRoute\FindBestRoute;
+namespace App\Domain\Context\AirportRoute\FindBestPath;
 
-use App\Domain\Context\AirportRoute\FindBestRoute\Collection\AirportCollection;
+use App\Domain\Context\AirportRoute\FindBestPath\Collection\AirportCollection;
 
 class ResponseModel
 {

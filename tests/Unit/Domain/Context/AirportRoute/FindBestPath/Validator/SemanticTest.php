@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
-namespace App\Tests\Unit\Domain\Context\AirportRoute\FindBestRoute\Validator;
+namespace App\Tests\Unit\Domain\Context\AirportRoute\FindBestPath\Validator;
 
-use App\Domain\Context\AirportRoute\FindBestRoute\Exception\DestinationAirportNotFoundException;
-use App\Domain\Context\AirportRoute\FindBestRoute\Exception\OriginAirportNotFoundException;
-use App\Domain\Context\AirportRoute\FindBestRoute\Validator\Semantic as SemanticValidator;
+use App\Domain\Context\AirportRoute\FindBestPath\Exception\DestinationAirportNotFoundException;
+use App\Domain\Context\AirportRoute\FindBestPath\Exception\OriginAirportNotFoundException;
+use App\Domain\Context\AirportRoute\FindBestPath\Validator\Semantic as SemanticValidator;
 use App\Domain\Shared\Entity\Airport;
 use PHPUnit\Framework\TestCase;
 

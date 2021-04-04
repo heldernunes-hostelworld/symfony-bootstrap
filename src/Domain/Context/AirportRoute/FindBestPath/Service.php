@@ -1,23 +1,23 @@
 <?php declare(strict_types=1);
-namespace App\Domain\Context\AirportRoute\FindBestRoute;
+namespace App\Domain\Context\AirportRoute\FindBestPath;
 
-use App\Domain\Context\AirportRoute\FindBestRoute\Exception\DestinationAirportNotFoundException;
-use App\Domain\Context\AirportRoute\FindBestRoute\Exception\OriginAirportNotFoundException;
-use App\Domain\Context\AirportRoute\FindBestRoute\Validator\Semantic as SemanticValidator;
+use App\Domain\Context\AirportRoute\FindBestPath\Exception\DestinationAirportNotFoundException;
+use App\Domain\Context\AirportRoute\FindBestPath\Exception\OriginAirportNotFoundException;
+use App\Domain\Context\AirportRoute\FindBestPath\Validator\Semantic as SemanticValidator;
 
 class Service implements Handler
 {
     /** @var SemanticValidator */
-    private $semanticValidator;
+    private SemanticValidator $semanticValidator;
 
     /** @var AirportRepository */
-    private $airportRepository;
+    private AirportRepository $airportRepository;
 
     /** @var RouteRepository */
-    private $routeRepository;
+    private RouteRepository $routeRepository;
 
     /** @var ShortestPathFinder */
-    private $shortestPathFinder;
+    private ShortestPathFinder $shortestPathFinder;
 
     public function __construct(
         SemanticValidator $semanticValidator,

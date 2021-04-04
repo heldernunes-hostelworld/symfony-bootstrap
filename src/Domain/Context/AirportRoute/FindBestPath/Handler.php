@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
-namespace App\Domain\Context\AirportRoute\FindBestRoute;
+namespace App\Domain\Context\AirportRoute\FindBestPath;
 
-use App\Domain\Context\AirportRoute\FindBestRoute\Exception\DestinationAirportNotFoundException;
-use App\Domain\Context\AirportRoute\FindBestRoute\Exception\OriginAirportNotFoundException;
+use App\Domain\Context\AirportRoute\FindBestPath\Exception\DestinationAirportNotFoundException;
+use App\Domain\Context\AirportRoute\FindBestPath\Exception\OriginAirportNotFoundException;
 
 interface Handler
 {

@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace App\Domain\Context\AirportRoute\FindBestRoute\Collection;
+namespace App\Domain\Context\AirportRoute\FindBestPath\Collection;
 
 use App\Domain\Shared\Entity\Airport;
 

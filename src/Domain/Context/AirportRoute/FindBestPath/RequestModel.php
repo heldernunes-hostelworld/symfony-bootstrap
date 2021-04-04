@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace App\Domain\Context\AirportRoute\FindBestRoute;
+namespace App\Domain\Context\AirportRoute\FindBestPath;
 
 class RequestModel
 {
