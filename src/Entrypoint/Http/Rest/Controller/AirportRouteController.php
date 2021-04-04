@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 namespace App\Entrypoint\Http\Rest\Controller;
 
+use App\Domain\Context\AirportRoute\FindBestPath\Handler as FindBestPathHandler;
+use App\Entrypoint\Http\Rest\Builder\AirportCollectionArray as AirportCollectionArrayBuilder;
+use App\Entrypoint\Http\Rest\Factory\BestRouteRequestModelFactory;
 use App\Entrypoint\Http\Rest\Validator\BestRouteSyntacticValidator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,6 +12,13 @@ use Throwable;
 
 class AirportRouteController
 {
+    private FindBestPathHandler $findBestPathHandler;
+
+    public function __construct(FindBestPathHandler $findBestPathHandler)
+    {
+        $this->findBestPathHandler = $findBestPathHandler;
+    }
+
     /**
      * @Route("/", name="helloWorld", methods="GET")
      */
@@ -32,11 +42,13 @@ class AirportRouteController
 
             BestRouteSyntacticValidator::validate($request);
 
+            $result = $this->findBestPathHandler->findBestRoute(
+                BestRouteRequestModelFactory::create((int) $from, (int) $to)
+            );
+
             return new JsonResponse([
                 'success' => true,
-                'data' => 'Best route endpoint still in development',
-                'from' => $from,
-                'to' => $to
+                'data' => AirportCollectionArrayBuilder::build($result->getAirportCollection()),
             ]);
         } catch (Throwable $throwable) {
             return new JsonResponse([
