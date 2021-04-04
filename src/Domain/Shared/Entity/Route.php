@@ -1,21 +1,17 @@
 <?php declare(strict_types=1);
 namespace App\Domain\Shared\Entity;
 
-use DateTimeImmutable;
+use DateTime;
 
 class Route
 {
-    /** @var ?int */
-    private $id;
+    private ?int $id;
 
-    /** @var string */
-    private $origin;
+    private Airport $origin;
 
-    /** @var string */
-    private $destiny;
+    private Airport $destiny;
 
-    /** @var DateTimeImmutable */
-    private $createdAt;
+    private DateTime $createdAt;
 
     public function getId(): ?int
     {
@@ -29,36 +25,36 @@ class Route
         return $this;
     }
 
-    public function getOrigin(): string
+    public function getOrigin(): Airport
     {
         return $this->origin;
     }
 
-    public function setOrigin(string $origin): Route
+    public function setOrigin(Airport $origin): Route
     {
         $this->origin = $origin;
 
         return $this;
     }
 
-    public function getDestiny(): string
+    public function getDestiny(): Airport
     {
         return $this->destiny;
     }
 
-    public function setDestiny(string $destiny): Route
+    public function setDestiny(Airport $destiny): Route
     {
         $this->destiny = $destiny;
 
         return $this;
     }
 
-    public function getCreatedAt(): DateTimeImmutable
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeImmutable $createdAt): Route
+    public function setCreatedAt(DateTime $createdAt): Route
     {
         $this->createdAt = $createdAt;
 

@@ -20,6 +20,17 @@ class PossibleRoutesCollection
         return $this;
     }
 
+    public function addPossibleRoute(Airport $origin, Airport $destination): self
+    {
+        if (empty($this->get($origin->getId()))) {
+            $this->possibleRoutes[$origin->getId()] = AirportCollection::createEmpty()->addAirport($destination);
+        } else {
+            $this->possibleRoutes[$origin->getId()]->addAirport($destination);
+        }
+
+        return $this;
+    }
+
     public function getAll(): array
     {
         return $this->possibleRoutes;

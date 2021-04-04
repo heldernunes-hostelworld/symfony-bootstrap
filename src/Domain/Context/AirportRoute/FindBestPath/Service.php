@@ -7,16 +7,12 @@ use App\Domain\Context\AirportRoute\FindBestPath\Validator\Semantic as SemanticV
 
 class Service implements Handler
 {
-    /** @var SemanticValidator */
     private SemanticValidator $semanticValidator;
 
-    /** @var AirportRepository */
     private AirportRepository $airportRepository;
 
-    /** @var RouteRepository */
     private RouteRepository $routeRepository;
 
-    /** @var ShortestPathFinder */
     private ShortestPathFinder $shortestPathFinder;
 
     public function __construct(

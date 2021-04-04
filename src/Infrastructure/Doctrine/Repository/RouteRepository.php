@@ -3,6 +3,7 @@ namespace App\Infrastructure\Doctrine\Repository;
 
 use App\Domain\Context\AirportRoute\FindBestPath\Collection\PossibleRoutesCollection;
 use App\Domain\Context\AirportRoute\FindBestPath\RouteRepository as FindBestPathRouteRepository;
+use App\Domain\Shared\Entity\Route;
 use App\Domain\Shared\Entity\Route as RouteEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,6 +17,15 @@ class RouteRepository extends ServiceEntityRepository implements FindBestPathRou
 
     public function fetchAirportsPossibleRoutes(): PossibleRoutesCollection
     {
-        return PossibleRoutesCollection::create();
+        /** @var Route[] $routes */
+        $routes = $this->findAll();
+
+        $possibleRoutes = PossibleRoutesCollection::create();
+
+        foreach ($routes as $route) {
+            $possibleRoutes->addPossibleRoute($route->getOrigin(), $route->getDestiny());
+        }
+
+        return $possibleRoutes;
     }
 }

@@ -3,11 +3,9 @@ namespace App\Domain\Context\AirportRoute\FindBestPath;
 
 class RequestModel
 {
-    /** @var int */
-    private $originAirportId;
+    private int $originAirportId;
 
-    /** @var int */
-    private $destinationAirportId;
+    private int $destinationAirportId;
 
     public function __construct(int $originAirportId, int $destinationAirportId)
     {

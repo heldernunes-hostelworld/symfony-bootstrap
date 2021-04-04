@@ -1,21 +1,17 @@
 <?php declare(strict_types=1);
 namespace App\Domain\Shared\Entity;
 
-use DateTimeImmutable;
+use DateTime;
 
 class City
 {
-    /** @var ?int */
-    private $id;
+    private ?int $id;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var Country */
-    private $country;
+    private Country $country;
 
-    /** @var DateTimeImmutable */
-    private $createdAt;
+    private DateTime $createdAt;
 
     public function getId(): ?int
     {
@@ -53,12 +49,12 @@ class City
         return $this;
     }
 
-    public function getCreatedAt(): DateTimeImmutable
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeImmutable $createdAt): City
+    public function setCreatedAt(DateTime $createdAt): City
     {
         $this->createdAt = $createdAt;
 

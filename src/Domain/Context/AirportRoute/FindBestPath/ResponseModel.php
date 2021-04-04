@@ -5,8 +5,7 @@ use App\Domain\Context\AirportRoute\FindBestPath\Collection\AirportCollection;
 
 class ResponseModel
 {
-    /** @var AirportCollection */
-    private $airportCollection;
+    private AirportCollection $airportCollection;
 
     public function __construct(AirportCollection $airportCollection)
     {

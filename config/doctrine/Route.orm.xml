@@ -4,16 +4,16 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="origin" type="string" column="origin" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="destiny" type="string" column="destiny" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
+    <many-to-one field="origin" target-entity="Airport" fetch="LAZY">
+      <join-columns>
+        <join-column name="originAirportId" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="destiny" target-entity="Airport" fetch="LAZY">
+      <join-columns>
+        <join-column name="destinyAirportId" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
     <field name="createdAt" type="datetime" column="added" nullable="false">
       <options>
         <option name="default">current_timestamp()</option>
