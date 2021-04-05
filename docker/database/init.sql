@@ -3,7 +3,7 @@ CREATE TABLE `Countries` (
 	`countryName` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
 	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`),
-  UNIQUE INDEX `countryName` (`countryName`)
+    UNIQUE INDEX `countryName` (`countryName`)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB;
@@ -14,26 +14,26 @@ CREATE TABLE `Cities` (
 	`countryId` INT(11) NOT NULL,
 	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`),
-  FOREIGN KEY (countryId)
+    FOREIGN KEY (countryId)
         REFERENCES Countries(id)
         ON DELETE CASCADE,
-	UNIQUE INDEX `cityName` (`cityName`)
+    UNIQUE INDEX `cityName` (`cityName`)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB;
 
 
 CREATE TABLE `Airports` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-  `airportName` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
-	`cityId` INT(11) NOT NULL,
-	`countryId` INT(11) NOT NULL,
-	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (`id`),
-  FOREIGN KEY (countryId)
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `airportName` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
+    `cityId` INT(11) NOT NULL,
+    `countryId` INT(11) NOT NULL,
+    `added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (countryId)
         REFERENCES Countries(id)
         ON DELETE CASCADE,
-  FOREIGN KEY (cityId)
+    FOREIGN KEY (cityId)
         REFERENCES Cities(id)
         ON DELETE CASCADE
 )
@@ -42,11 +42,17 @@ ENGINE=InnoDB;
 
 
 CREATE TABLE `Routes` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-  `origin` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
-	`destiny` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
-	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (`id`)
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `originAirportId` INT(11) NOT NULL,
+    `destinyAirportId` INT(11) NOT NULL,
+    `added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (originAirportId)
+        REFERENCES Airports(id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (destinyAirportId)
+        REFERENCES Airports(id)
+        ON DELETE CASCADE
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB;
@@ -88,69 +94,84 @@ INSERT INTO Airports (airportName, cityId, countryId) VALUES ('k', 12, 7);
 INSERT INTO Airports (airportName, cityId, countryId) VALUES ('l', 13, 7);
 
 
-INSERT INTO Routes (origin, destiny) VALUES ('a', 'c');
-INSERT INTO Routes (origin, destiny) VALUES ('a', 'g');
-INSERT INTO Routes (origin, destiny) VALUES ('a', 'l');
-INSERT INTO Routes (origin, destiny) VALUES ('a', 'j');
-INSERT INTO Routes (origin, destiny) VALUES ('b', 'c');
-INSERT INTO Routes (origin, destiny) VALUES ('b', 'h');
-INSERT INTO Routes (origin, destiny) VALUES ('b', 'd');
-INSERT INTO Routes (origin, destiny) VALUES ('b', 'a');
-INSERT INTO Routes (origin, destiny) VALUES ('b', 'l');
-INSERT INTO Routes (origin, destiny) VALUES ('b', 'f');
-INSERT INTO Routes (origin, destiny) VALUES ('c', 'f');
-INSERT INTO Routes (origin, destiny) VALUES ('c', 'e');
-INSERT INTO Routes (origin, destiny) VALUES ('c', 'a');
-INSERT INTO Routes (origin, destiny) VALUES ('c', 'i');
-INSERT INTO Routes (origin, destiny) VALUES ('c', 'j');
-INSERT INTO Routes (origin, destiny) VALUES ('d', 'b');
-INSERT INTO Routes (origin, destiny) VALUES ('d', 'c');
-INSERT INTO Routes (origin, destiny) VALUES ('d', 'f');
-INSERT INTO Routes (origin, destiny) VALUES ('d', 'h');
-INSERT INTO Routes (origin, destiny) VALUES ('d', 'j');
-INSERT INTO Routes (origin, destiny) VALUES ('d', 'l');
-INSERT INTO Routes (origin, destiny) VALUES ('e', 'l');
-INSERT INTO Routes (origin, destiny) VALUES ('e', 'd');
-INSERT INTO Routes (origin, destiny) VALUES ('e', 'k');
-INSERT INTO Routes (origin, destiny) VALUES ('e', 'a');
-INSERT INTO Routes (origin, destiny) VALUES ('e', 'c');
-INSERT INTO Routes (origin, destiny) VALUES ('f', 'h');
-INSERT INTO Routes (origin, destiny) VALUES ('f', 'e');
-INSERT INTO Routes (origin, destiny) VALUES ('f', 'd');
-INSERT INTO Routes (origin, destiny) VALUES ('f', 'i');
-INSERT INTO Routes (origin, destiny) VALUES ('f', 'l');
-INSERT INTO Routes (origin, destiny) VALUES ('f', 'a');
-INSERT INTO Routes (origin, destiny) VALUES ('g', 'b');
-INSERT INTO Routes (origin, destiny) VALUES ('g', 'd');
-INSERT INTO Routes (origin, destiny) VALUES ('g', 'f');
-INSERT INTO Routes (origin, destiny) VALUES ('g', 'h');
-INSERT INTO Routes (origin, destiny) VALUES ('h', 'i');
-INSERT INTO Routes (origin, destiny) VALUES ('h', 'a');
-INSERT INTO Routes (origin, destiny) VALUES ('h', 'c');
-INSERT INTO Routes (origin, destiny) VALUES ('h', 'e');
-INSERT INTO Routes (origin, destiny) VALUES ('h', 'g');
-INSERT INTO Routes (origin, destiny) VALUES ('i', 'b');
-INSERT INTO Routes (origin, destiny) VALUES ('i', 'e');
-INSERT INTO Routes (origin, destiny) VALUES ('i', 'f');
-INSERT INTO Routes (origin, destiny) VALUES ('i', 'a');
-INSERT INTO Routes (origin, destiny) VALUES ('i', 'b');
-INSERT INTO Routes (origin, destiny) VALUES ('i', 'c');
-INSERT INTO Routes (origin, destiny) VALUES ('j', 'd');
-INSERT INTO Routes (origin, destiny) VALUES ('j', 'e');
-INSERT INTO Routes (origin, destiny) VALUES ('j', 'f');
-INSERT INTO Routes (origin, destiny) VALUES ('j', 'g');
-INSERT INTO Routes (origin, destiny) VALUES ('j', 'h');
-INSERT INTO Routes (origin, destiny) VALUES ('j', 'i');
-INSERT INTO Routes (origin, destiny) VALUES ('k', 'j');
-INSERT INTO Routes (origin, destiny) VALUES ('k', 'l');
-INSERT INTO Routes (origin, destiny) VALUES ('k', 'a');
-INSERT INTO Routes (origin, destiny) VALUES ('k', 'b');
-INSERT INTO Routes (origin, destiny) VALUES ('k', 'c');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'd');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'e');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'f');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'g');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'h');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'i');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'j');
-INSERT INTO Routes (origin, destiny) VALUES ('l', 'k');
+SELECT Airports.id INTO @airportA FROM Airports WHERE airportName = 'a';
+SELECT Airports.id INTO @airportB FROM Airports WHERE airportName = 'b';
+SELECT Airports.id INTO @airportC FROM Airports WHERE airportName = 'c';
+SELECT Airports.id INTO @airportD FROM Airports WHERE airportName = 'd';
+SELECT Airports.id INTO @airportE FROM Airports WHERE airportName = 'e';
+SELECT Airports.id INTO @airportF FROM Airports WHERE airportName = 'f';
+SELECT Airports.id INTO @airportG FROM Airports WHERE airportName = 'g';
+SELECT Airports.id INTO @airportH FROM Airports WHERE airportName = 'h';
+SELECT Airports.id INTO @airportI FROM Airports WHERE airportName = 'i';
+SELECT Airports.id INTO @airportJ FROM Airports WHERE airportName = 'j';
+SELECT Airports.id INTO @airportK FROM Airports WHERE airportName = 'k';
+SELECT Airports.id INTO @airportL FROM Airports WHERE airportName = 'l';
+
+INSERT INTO Routes (originAirportId, destinyAirportId) VALUES
+(@airportA, @airportC),
+(@airportA, @airportG),
+(@airportA, @airportL),
+(@airportA, @airportJ),
+(@airportB, @airportC),
+(@airportB, @airportH),
+(@airportB, @airportD),
+(@airportB, @airportA),
+(@airportB, @airportL),
+(@airportB, @airportF),
+(@airportC, @airportF),
+(@airportC, @airportE),
+(@airportC, @airportA),
+(@airportC, @airportI),
+(@airportC, @airportJ),
+(@airportD, @airportB),
+(@airportD, @airportC),
+(@airportD, @airportF),
+(@airportD, @airportH),
+(@airportD, @airportJ),
+(@airportD, @airportL),
+(@airportE, @airportL),
+(@airportE, @airportD),
+(@airportE, @airportK),
+(@airportE, @airportA),
+(@airportE, @airportC),
+(@airportF, @airportH),
+(@airportF, @airportE),
+(@airportF, @airportD),
+(@airportF, @airportI),
+(@airportF, @airportL),
+(@airportF, @airportA),
+(@airportG, @airportB),
+(@airportG, @airportD),
+(@airportG, @airportF),
+(@airportG, @airportH),
+(@airportH, @airportI),
+(@airportH, @airportA),
+(@airportH, @airportC),
+(@airportH, @airportE),
+(@airportH, @airportG),
+(@airportI, @airportB),
+(@airportI, @airportE),
+(@airportI, @airportF),
+(@airportI, @airportA),
+(@airportI, @airportB),
+(@airportI, @airportC),
+(@airportJ, @airportD),
+(@airportJ, @airportE),
+(@airportJ, @airportF),
+(@airportJ, @airportG),
+(@airportJ, @airportH),
+(@airportJ, @airportI),
+(@airportK, @airportJ),
+(@airportK, @airportL),
+(@airportK, @airportA),
+(@airportK, @airportB),
+(@airportK, @airportC),
+(@airportL, @airportD),
+(@airportL, @airportE),
+(@airportL, @airportF),
+(@airportL, @airportG),
+(@airportL, @airportH),
+(@airportL, @airportI),
+(@airportL, @airportJ),
+(@airportL, @airportK)
+;

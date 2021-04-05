@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Domain\Shared\Entity\Route" table="Routes">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="origin" target-entity="Airport" fetch="LAZY">
+      <join-columns>
+        <join-column name="originAirportId" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="destiny" target-entity="Airport" fetch="LAZY">
+      <join-columns>
+        <join-column name="destinyAirportId" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <field name="createdAt" type="datetime" column="added" nullable="false">
+      <options>
+        <option name="default">current_timestamp()</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>
